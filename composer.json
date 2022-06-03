@@ -1,0 +1,27 @@
+{
+    "name": "0s1r1s/latexvel",
+    "description": "Laravel Package to render latex easily.",
+    "require": {
+        "php": "^8.0",
+        "symfony/process": "^6.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Os1r1s\\LatexVel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Laurin Wandzioch",
+            "email": "laurin@wandzioch.de"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Os1r1s\\LatexVel\\LatexVelServiceProvider"
+            ]
+        }
+    }
+}
