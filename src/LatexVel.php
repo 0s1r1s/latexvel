@@ -21,7 +21,7 @@ class LatexVel
     {
         $relativePath = 'latexvel/'.Str::random().'/';
         $storagePath = storage_path('app/'.$relativePath);
-        File::makeDirectory($storagePath);
+        File::makeDirectory($storagePath, 0777, true);
         File::put($storagePath.$fileName, $latexString);
 
         $program    = config('latexvel.latex_bin');
