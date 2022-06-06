@@ -24,7 +24,7 @@ class LatexVel
         File::makeDirectory($storagePath);
         File::put($storagePath.$fileName, $latexString);
 
-        $program    = '/Library/TeX/texbin/xelatex';
+        $program    = config('latexvel.latex_bin');
         $cmd        = [$program, $fileName];
 
         $process    = new Process($cmd);
@@ -35,7 +35,8 @@ class LatexVel
             throw new Exception('Check latex log in storage.');
         }
 
-        $idProcess = new Process(['/Library/TeX/texbin/makeindex', '-s', config('latexvel.index_style_path'), $fileName.'.idx']);
+        $idProgram = config('latexvel.makeindex_bin');
+        $idProcess = new Process([$idProgram, '-s', config('latexvel.index_style_path'), $fileName.'.idx']);
         $idProcess->setWorkingDirectory($storagePath);
         $idProcess->run();
 
