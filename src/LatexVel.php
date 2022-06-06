@@ -10,14 +10,14 @@ use Symfony\Component\Process\Process;
 
 class LatexVel
 {
-    public static function pdfFromView(string $viewPath, string $fileName)
+    public static function pdfFromView(string $viewPath, string $fileName): string
     {
         $latex = view($viewPath)->render();
 
         return self::pdfFromString($latex, $fileName);
     }
 
-    public static function pdfFromString(string $latexString, $fileName): bool
+    public static function pdfFromString(string $latexString, $fileName): string
     {
         $relativePath = 'latexvel/'.Str::random().'/';
         $storagePath = storage_path('app/'.$relativePath);
@@ -45,6 +45,6 @@ class LatexVel
         File::move($storagePath.$fileName.'.pdf', storage_path('app/latexvel/').$fileName.'.pdf');
         Storage::deleteDirectory($relativePath);
 
-        return true;
+        return 'latexvel/'.$fileName.'.pdf';
     }
 }
